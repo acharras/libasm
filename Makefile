@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42lyon.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/07 11:37:56 by acharras          #+#    #+#              #
-#    Updated: 2020/04/23 08:12:04 by user42           ###   ########lyon.fr    #
+#    Updated: 2020/10/29 16:11:23 by user42           ###   ########lyon.fr    #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,10 +31,12 @@ NAME =	libasm.a
 NASM =	nasm
 
 
-NASMFLAGS =	-f macho64
+NASMFLAGS =	-f elf64
 
 
 RM =	rm -rf
+
+TEST =	test
 
 
 all :	$(NAME)
@@ -46,9 +48,12 @@ $(NAME) :	$(OBJ) $(HEADERS)
 			@echo "\033[38;2;153;102;255;1m#\033[38;2;0;204;0;1m\tCompiling $(NAME)...   \033[38;2;153;102;255;1m#\n#\033[38;2;0;204;0;1m\t\tDone\t\t     \033[0m\033[38;2;153;102;255;1m#"
 			@echo "\033[38;2;153;102;255;1m######################################\033[0m"
 
-%.o: %.c $(HEADERS)
+%.o: %.s $(HEADERS)
 			@$(NASM) $(NASMFLAGS) $< -o $@
 			@echo "\033[38;2;255;204;0;1mCompiling object $@...\nDone\033[0m"
+
+$(TEST)	:
+			gcc -Wall -Werror -Wextra main.c libasm.a -o $(TEST)
 
 clean :
 			@$(RM) -f $(OBJ)

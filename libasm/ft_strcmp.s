@@ -1,7 +1,7 @@
-segment	.text
-		global _ft_strcmp
+section	.text
+		global ft_strcmp
 
-_ft_strcmp:
+ft_strcmp:
 		xor		rdx, rdx
 
 	.while_loop:

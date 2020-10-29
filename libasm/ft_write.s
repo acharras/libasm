@@ -1,12 +1,12 @@
-segment	.text
-		global _ft_write
+section	.text
+		global ft_write
 
-_ft_write:
+ft_write:
 		mov		rax, 0x2000004
 		syscall
 		mov		r10, rcx
 		syscall
-		jae		.return
+		jae		.end
 		mov		rax, -1
 
 	.end:
