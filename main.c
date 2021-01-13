@@ -1,9 +1,13 @@
 #include "libasm.h"
+# include <errno.h>
 
 int        main(void)
 {
+    int fd = open("mine.txt", O_WRONLY);
+    int fd2 = open("real.txt", O_WRONLY);
     char dest[1000];
     char *dest1 = "salut"; 
+    ssize_t out;
 
     printf("ft_strlen_\n\n");
     STRLEN("");
@@ -30,11 +34,46 @@ int        main(void)
 
     printf("ft_write_\n\n");
     
-    WRITE(1, "salut", 1);
-    WRITE(1, "salut", 2);
-    WRITE(1, "salut", 3);
-    WRITE(1, "salut", 5);
-    WRITE(1, "salut", 10);
+    out = write(fd2, "Bonjour", 7);
+    printf("\nREAL : %ld\n", out);
+    out = ft_write(fd, "Bonjour", 7);
+    printf("MINE : %ld\n", out);
+    out = write(1, "", 0);
+    printf("\nREAL : %ld\n", out);
+    out = ft_write(1, "", 0);
+    printf("MINE : %ld\n", out);
+    out = write(-1, "Bonjour", 7);
+    printf("\nREAL : %ld\n", out);
+    out = ft_write(-1, "Bonjour", 7);
+    printf("MINE : %ld\n", out);
+
+	out = write(fd2, "Bonjour", 7);
+    printf("\nREAL : %ld\n", out);
+    out = ft_write(fd2, "Bonjour", 7);
+    printf("MINE : %ld\n", out);
+
+	out = write(fd2, "Bonjour", 7);
+    printf("\nREAL : %ld\n", out);
+    out = ft_write(fd, "Bonjour", 7);
+    printf("MINE : %ld\n", out);
+
+	out = write(fd2, "Bonjour", 10);
+    printf("\nREAL : %ld\n", out);
+    out = ft_write(fd, "Bonjour", 10);
+    printf("MINE : %ld\n", out);
+    printf("\n##########################\n\n");
+
+    printf("ft_read_\n\n");
+
+    printf("\n##########################\n\n");
+
+    printf("ft_strdup_\n\n");
+
+	STRDUP("test");
+	STRDUP("Ceci est un test quand meme pas mal plus lonng");
+	STRDUP("");
+
+
     printf("\n##########################\n\n");
 
     return (0);
