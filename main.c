@@ -1,3 +1,4 @@
+#include "libasm.h"
 #define BUF 32
 
 int        main(int ac, char **av)
